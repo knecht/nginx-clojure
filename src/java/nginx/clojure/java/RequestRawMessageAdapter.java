@@ -190,6 +190,7 @@ public class RequestRawMessageAdapter implements RawMessageListener<NginxRequest
 			}else if (NginxClojureRT.workers == null) {
 				action.run();
 			}else {
+				req.tagReleased();
 				NginxClojureRT.workerExecutorService.submit(new RequestOrderedRunnable("onClose2", action, req));
 			}
 		}else {
